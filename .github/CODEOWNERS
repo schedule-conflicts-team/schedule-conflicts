@@ -1,0 +1,23 @@
+# Владельцы по умолчанию
+*                     @epolykovskiy @vovelio
+
+# Компоненты
+/backend/             @epolykovskiy @vovelio
+/frontend/            @vovelio @epolykovskiy
+/1c/                  @annsizova138-ship-it @EllionorOstrom @epolykovskiy
+
+# Контракты
+/api/backend.yaml     @epolykovskiy @vovelio
+/api/1c.yaml          @annsizova138-ship-it @EllionorOstrom @epolykovskiy
+
+# Документы
+/docs/project/        @epolykovskiy @AlisnGol
+/docs/analysis/       @AlisnGol @EllionorOstrom
+/docs/architecture/   @epolykovskiy @annsizova138-ship-it
+/docs/data/           @annsizova138-ship-it @EllionorOstrom
+/docs/testing/        @vovelio @AlisnGol
+
+# Общее
+/data/                @annsizova138-ship-it @vovelio
+/scripts/             @annsizova138-ship-it @epolykovskiy
+/.github/             @epolykovskiy @AlisnGol
