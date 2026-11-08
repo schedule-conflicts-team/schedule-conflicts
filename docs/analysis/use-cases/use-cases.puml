@@ -1,0 +1,68 @@
+@startuml ВариантыИспользования
+left to right direction
+skinparam packageStyle rectangle
+skinparam shadowing false
+
+title Use Case: «Учебное расписание и конфликтология»
+
+actor "Посетитель сайта\n(студенты, преподаватели)" as guest
+actor "Учебный отдел" as uo
+actor "Администратор\nрасписания" as adm
+
+' УО и администратор тоже могут смотреть опубликованное расписание
+guest <|-- uo
+guest <|-- adm
+
+rectangle "Учебное расписание и конфликтология" {
+  usecase "Просмотреть опубликованное\nрасписание" as UC_view
+  usecase "Отфильтровать по преподавателю,\nгруппе, аудитории" as UC_view_filter
+
+  usecase "Войти в систему" as UC_login
+
+  usecase "Загрузить расписание\nиз CSV" as UC_upload
+  usecase "Проверить корректность\nданных" as UC_valid
+  usecase "Править занятия" as UC_edit
+  usecase "Проверить расписание\nна конфликты" as UC_check
+  usecase "Записать запуск\nв журнал проверок" as UC_log
+  usecase "Просмотреть уведомления\nо конфликтах" as UC_notif
+  usecase "Отправить расписание\nна согласование" as UC_send
+
+  usecase "Просмотреть отчёт\n«Конфликты расписания»" as UC_report
+  usecase "Отфильтровать\nконфликты" as UC_filter
+  usecase "Экспортировать\nотчёт в CSV" as UC_export
+  usecase "Просмотреть журнал\nпроверок" as UC_journal
+
+  usecase "Согласовать или отклонить\nрасписание" as UC_approve
+  usecase "Управлять учётными\nзаписями и ролями" as UC_users
+}
+
+note "Предусловие для прецедентов УО\nи администратора: пользователь\nвошёл в систему. Просмотр\nопубликованного расписания\nдоступен без входа." as N_pre
+
+' ассоциации
+guest --> UC_view
+
+uo --> UC_login
+uo --> UC_upload
+uo --> UC_edit
+uo --> UC_check
+uo --> UC_notif
+uo --> UC_send
+uo --> UC_report
+uo --> UC_journal
+
+adm --> UC_login
+adm --> UC_approve
+adm --> UC_users
+adm --> UC_report
+adm --> UC_journal
+
+' include: выполняется всегда
+UC_upload ..> UC_valid : <<include>>
+UC_check ..> UC_log : <<include>>
+
+' extend: выполняется по желанию
+UC_view <.. UC_view_filter : <<extend>>
+UC_report <.. UC_filter : <<extend>>
+UC_report <.. UC_export : <<extend>>
+
+@enduml
